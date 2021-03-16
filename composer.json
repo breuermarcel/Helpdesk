@@ -1,0 +1,20 @@
+{
+    "name": "c1x1/helpdesk",
+    "description": "Contact Helpdesk.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marcel Breuer",
+            "email": "breuer.marcel@outlook.com"
+        }
+    ],
+    "require": {
+
+    },
+    "autoload": {
+        "psr-4": {
+            "C1x1\\Helpdesk\\": "src/"
+        }
+    }
+}
