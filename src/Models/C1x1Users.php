@@ -9,15 +9,18 @@ class C1x1Users extends Model
 {
     use HasFactory;
 
-    protected $table = 'c1x1_users';
-    protected $primaryKey = 'id';
+    protected $table = 'c1x1users';
+    public $timestamps = false;
 
     protected $fillable = [
+
     ];
 
     protected $hidden = [
+
     ];
 
     protected $casts = [
+
     ];
 }

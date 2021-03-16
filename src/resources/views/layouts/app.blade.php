@@ -5,14 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('helpdesk.name', 'Helpdesk') }}</title>
-    <link href="{{ asset('css/helpdesk.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" rel="stylesheet"/>
+    @include('helpdesk::components.styling')
 </head>
 <body>
 <main class="helpdesk">
-    @yield('content')
+    <div class="wrapper">
+        @yield('content')
+    </div>
 </main>
 <div id="script-section">
-    <script src="{{ asset('js/helpdesk.js') }}"></script>
+    @include('helpdesk::components.scripts')
 </div>
 </body>
 </html>

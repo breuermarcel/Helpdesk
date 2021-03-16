@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateC1x1UsersTable extends Migration
+class CreateC1x1messagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class CreateC1x1UsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('c1x1_users', function (Blueprint $table) {
+        Schema::create('c1x1messages', function (Blueprint $table) {
             $table->id();
+            $table->string('message');
+            $table->unsignedBigInteger('owner_id');
+            $table->unsignedBigInteger('chat_id');
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreateC1x1UsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('c1x1_users');
+        Schema::dropIfExists('c1x1messages');
     }
 }

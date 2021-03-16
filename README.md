@@ -1,4 +1,4 @@
-<h1>c1x1-Chat</h1>
+<h1>c1x1-Helpdesk</h1>
 
 <h2>Installation</h2>
 

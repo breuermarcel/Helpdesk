@@ -12,11 +12,11 @@ class HelpdeskServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
         $this->loadTranslationsFrom(__DIR__ . '/resources/lang', $pkg);
-        $this->loadViewsFrom(__DIR__ . '/resources/view', $pkg);
+        $this->loadViewsFrom(__DIR__ . '/resources/views', $pkg);
         $this->mergeConfigFrom(__DIR__ . '/config/helpdesk.php', $pkg);
         $this->publishes([
             __DIR__ . '/config/helpdesk.php' => config_path($pkg),
-            __DIR__ . '/views' => resource_path('views/vendor/'.$pkg),
+            __DIR__ . '/resources/views' => resource_path('views/vendor/'.$pkg),
         ]);
     }
 

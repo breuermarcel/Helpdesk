@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'name' => 'helpdesk',
+    'name' => 'Helpdesk',
     'system' => 'laravel',
 ];
