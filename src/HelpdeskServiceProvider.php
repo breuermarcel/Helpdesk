@@ -16,6 +16,7 @@ class HelpdeskServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/config/helpdesk.php', $pkg);
         $this->publishes([
             __DIR__ . '/config/helpdesk.php' => config_path($pkg),
+            __DIR__ . '/views' => resource_path('views/vendor/'.$pkg),
         ]);
     }
 
