@@ -18,13 +18,10 @@ class ChatController extends Controller
     }
 
     public function joinChat() {
-        $this->login();
+        $user = new AuthController();
+        $user = $user->checkUserLogin();
 
-        return view('helpdesk::home');
-    }
-
-    protected function login() {
-        return false;
+        return view('helpdesk::home', compact('user'));
     }
 
     protected function getMessage(Request $request) {
