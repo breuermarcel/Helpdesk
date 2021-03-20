@@ -19,6 +19,8 @@ class CreateC1x1usersTable extends Migration
             $table->string('firstname')->nullable();
             $table->string('lastname')->nullable();
             $table->string('email')->nullable();
+            $table->string('session')->nullable();
+            $table->timestamps();
         });
     }
 

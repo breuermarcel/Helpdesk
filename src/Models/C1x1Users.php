@@ -10,9 +10,16 @@ class C1x1Users extends Model
     use HasFactory;
 
     protected $table = 'c1x1users';
-    public $timestamps = false;
 
     protected $fillable = [
+        'is_admin',
+        'firstname',
+        'lastname',
+        'email',
+        'session'
+    ];
+
+    protected $guarded = [
 
     ];
 
