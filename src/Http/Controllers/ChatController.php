@@ -3,7 +3,7 @@
 
 namespace C1x1\Helpdesk\Http\Controllers;
 
-use \App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use C1x1\Helpdesk\Models\C1x1Chatroom;
 use C1x1\Helpdesk\Models\C1x1Messages;
@@ -12,10 +12,6 @@ use Illuminate\Http\Request;
 
 class ChatController extends Controller
 {
-    public function __construct()
-    {
-
-    }
 
     public function joinChat() {
         $user = new AuthController();

@@ -3,16 +3,19 @@
 @section('content')
     <section class="chat-area">
         <header>
-            {{-- if user is admin show backlink--}}
-            <a href="#" class="back-icon"><i class="fas fa-arrow-left"></i></a>
-            {{-- endif --}}
+            @if ($user['is_admin'] === true)
+                <a href="#" class="back-icon"><i class="fas fa-arrow-left"></i></a>
+            @endif
+        
             <div class="details">
-                <span>Max Mustermann</span>
+                <span>BACKEND USERNAME</span>
             </div>
         </header>
+
         <div class="chat-box">
 
         </div>
+        
         <form action="#" method="POST" class="typing-area">
             @method('POST')
             <input type="hidden" class="owner_id" name="owner_id" value="1" />

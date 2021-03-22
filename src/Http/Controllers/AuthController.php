@@ -3,7 +3,7 @@
 
 namespace C1x1\Helpdesk\Http\Controllers;
 
-use \App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 
 
 class AuthController extends Controller
