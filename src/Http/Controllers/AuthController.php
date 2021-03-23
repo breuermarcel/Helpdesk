@@ -4,42 +4,23 @@
 namespace C1x1\Helpdesk\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use C1x1\Helpdesk\Models\C1x1Users;
+use Hash;
 
 
 class AuthController extends Controller
 {
-    private $session_name = 'c1x1_helpdesk_session';
-
-    public function checkUserLogin(Request $request) {
-        if (!isset($_Cookie[$this->session_name])) {
-            $registered_user = $this->register();
-            $_Cookie[$this->session_name] = $registered_user['session'];
-        } 
-
-        $user = $this->login($_Cookie[$this->session_name]);
-
-        return $user;
-    }
-
-    public function login($session) {
-       $user = C1x1Users::where('session', '=', $session)->first();
-
-       if (!$user) {
-           unset($_Cookie[$this->session_name]);
-           $user = $this->register();
-           setcookie($this->session_name, $user['session'], time()+3600);
-           $this->checkUserLogin();
-       }
-
-        return $user;
+    public function registerForm() {
+        return view('helpdesk::register');
     }
 
     public function register(Request $request) {
         $ip = $this->getUsersIP();
 
         $user = $request->validate([
-            'firstname' => ['string', 'min:1'],
-            'lastname' => ['string', 'min:1'],
+            'firstname' => ['required', 'string', 'min:1'],
+            'lastname' => ['required','string', 'min:1'],
             'email' => ['required', 'email']
         ]);
 
@@ -48,7 +29,9 @@ class AuthController extends Controller
 
         C1x1Users::create($user);
 
-        return $user;
+        setcookie('helpdeskSession', $user['session'], time()+86400);
+
+        return redirect(route('helpdesk.chat.joinChat'));
     }
 
     public function encryptSession($ip_address, $email) {

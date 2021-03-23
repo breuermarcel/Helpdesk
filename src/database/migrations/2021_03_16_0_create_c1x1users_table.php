@@ -15,7 +15,7 @@ class CreateC1x1usersTable extends Migration
     {
         Schema::create('c1x1users', function (Blueprint $table) {
             $table->id();
-            $table->boolean('isAdmin')->default(false);
+            $table->boolean('is_admin')->default(false);
             $table->string('firstname')->nullable();
             $table->string('lastname')->nullable();
             $table->string('email')->nullable();

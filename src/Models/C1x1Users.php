@@ -20,7 +20,7 @@ class C1x1Users extends Model
     ];
 
     protected $guarded = [
-
+        'is_admin'
     ];
 
     protected $hidden = [
@@ -30,4 +30,8 @@ class C1x1Users extends Model
     protected $casts = [
 
     ];
+
+    public function chatroom() {
+        return $this->hasMany(C1x1Chatroom::class);
+    }
 }

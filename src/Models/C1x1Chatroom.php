@@ -13,7 +13,8 @@ class C1x1Chatroom extends Model
 
     protected $fillable = [
         'owner_id',
-        'member_id'
+        'member_id',
+        'status'
     ];
 
     protected $hidden = [
@@ -25,14 +26,14 @@ class C1x1Chatroom extends Model
     ];
 
     public function messages() {
-        $this->hasMany(C1x1Messages::class);
+        return $this->hasMany(C1x1Messages::class);
     }
 
     public function owner() {
-        $this->belongsTo(C1x1Users::class, 'owner_id');
+        return $this->belongsTo(C1x1Users::class, 'owner_id');
     }
 
     public function member() {
-        $this->belongsTo(C1x1Users::class, 'member_id');
+        return $this->belongsTo(C1x1Users::class, 'member_id');
     }
 }

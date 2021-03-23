@@ -16,7 +16,7 @@ class CreateC1x1chatroomTable extends Migration
         Schema::create('c1x1chatroom', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('owner_id');
-            $table->unsignedBigInteger('member_id');
+            $table->unsignedBigInteger('member_id')->nullable();
             $table->integer('status')->default(0);
             $table->timestamps();
         });
