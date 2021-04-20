@@ -8,27 +8,30 @@ use C1x1\Helpdesk\Models\C1x1Chatroom;
 
 class AdminController extends Controller
 {
+    private $currentUser;
+
+    public function __construct()
+    {
+        $currentUser = new ChatController();
+        $this->currentUser = $currentUser->getCurrentUser();
+    }
+
     public function dashboard() {
         $chatrooms = C1x1Chatroom::with(['owner','member'])->get();
 
-        $currentUser = new ChatController();
-        $currentUser = $currentUser->getCurrentUser();
-
         return view('helpdesk::admin', [
-            'currentUser' => $currentUser,
+            'currentUser' => $this->currentUser,
             'chatrooms' => $chatrooms
         ]);
     }
 
     public function joinChat($chat_id) {
-        $currentUser = new ChatController();
-        $currentUser = $currentUser->getCurrentUser();
+        $chat = C1x1Chatroom::where('id', '=', $chat_id)->firstOrFail();
+        $chat_status = $chat->status;
 
-        $chatroom = C1x1Chatroom::where('id', '=', $chat_id)->first('status');
-
-        if ($chatroom->status !== 2) {
+        if ($chat_status !== 2) {
             C1x1Chatroom::where('id', '=', $chat_id)->update([
-                'member_id' => $currentUser->id,
+                'member_id' => $this->currentUser->id,
                 'status' => 1
             ]);
         }
@@ -36,7 +39,7 @@ class AdminController extends Controller
         $chatroom = C1x1Chatroom::where('id', '=', $chat_id)->with(['owner', 'member'])->first();
 
         return view('helpdesk::home', [
-            'currentUser' => $currentUser,
+            'currentUser' => $this->currentUser,
             'chatroom' => $chatroom
         ]);
     }

@@ -15,6 +15,9 @@ class AuthController extends Controller
         return view('helpdesk::register');
     }
 
+    /**
+     * 	Register new user and open the chat.
+     */
     public function register(Request $request) {
         $ip = $this->getUsersIP();
 
@@ -29,24 +32,33 @@ class AuthController extends Controller
 
         C1x1Users::create($user);
 
+        // set cookie for 1 day
         setcookie('helpdeskSession', $user['session'], time()+86400);
 
-        return redirect(route('helpdesk.chat.joinChat'));
+        return redirect()->route('helpdesk.chat.joinChat');
     }
 
+    /**
+     * 	Build a session-ID from IP-address, email and current timestamp.
+     */
     public function encryptSession($ip_address, $email) {
         $session_string = $ip_address . $email . date('U');
 
         return Hash::make($session_string);
     }
 
+    /**
+     * 	Return the IP-address of the current user.
+     */
     private function getUsersIP() {
-        if(!empty($_SERVER['HTTP_CLIENT_IP'])) {
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
             return $_SERVER['HTTP_CLIENT_IP'];
-        } elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            return $_SERVER['HTTP_X_FORWARDED_FOR'];
-        } else {
-            return $_SERVER['REMOTE_ADDR'];
         }
+
+        if(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            return $_SERVER['HTTP_X_FORWARDED_FOR'];
+        }
+
+        return $_SERVER['REMOTE_ADDR'];
     }
 }
